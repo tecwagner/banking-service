@@ -3,6 +3,7 @@ version: '3' # optional since v1.27.0
 
 services:
   app:    
+    container_name: service_nestjs
     build: .
     entrypoint: ./.docker/entrypoint.sh
     ports:
@@ -15,6 +16,7 @@ services:
      
 
   database:
+    container_name: db_postgres
     build: .docker/postgres
     tty: true
     volumes:
