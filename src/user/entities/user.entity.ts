@@ -9,7 +9,7 @@ export interface IUserProps {
   username: string;
   email: string;
   password: string;
-  role: string;
+  // role: string;
   createdAt: Date;
 }
 
@@ -85,13 +85,13 @@ export class User {
     this.props.password = password;
   }
 
-  get role(): string {
-    return this.props.role;
-  }
+  // get role(): string {
+  //   return this.props.role;
+  // }
 
-  set role(role: string) {
-    this.props.role = role;
-  }
+  // set role(role: string) {
+  //   this.props.role = role;
+  // }
 
   get createdAt(): Date {
     return this.props.createdAt;

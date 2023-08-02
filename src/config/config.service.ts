@@ -5,6 +5,10 @@ import { ConfigService } from '@nestjs/config';
 export class ConfigurationService {
   constructor(private configService: ConfigService) {}
 
+  // get host(): string {
+  //   return this.configService.get('host');
+  // }
+
   get apiPort(): number {
     return +this.configService.get('api_port');
   }
