@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/home/node/app
     depends_on:
-      - postgresql
+      - postgresql      
     extra_hosts:
       - "host.docker.internal:172.17.0.1" 
      
@@ -28,8 +28,22 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
     ports:
-      - "54399:5432"
+      - "5432:5432"
       # - ${DB_PORT}:5432 
     extra_hosts:
       - "host.docker.internal:172.17.0.1" 
+
+  pgadmin:
+    image: dpage/pgadmin4:6.21
+    tty: true
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@user.com"
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    ports:
+      - "9000:80"
+    depends_on:
+      - postgresql
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+    
 

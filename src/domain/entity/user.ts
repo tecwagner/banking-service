@@ -1,12 +1,11 @@
-import { Replace } from 'src/helpers/Repleace';
-// import { AccountUser } from './user_account.entity';
-
-export type Role = 'Customer' | 'Shopkeeper';
+import { Replace } from '@helpers/Repleace';
+import { Account } from './user_account';
 
 export interface IUserProps {
-  id: string;
+  id?: string;
   fullname: string;
-  // account: AccountUser;
+  role: string;
+  account: Account;
   cpf?: string;
   cnpj?: string;
   email: string;
@@ -14,51 +13,48 @@ export interface IUserProps {
   createdAt: Date;
 }
 
-export class User {
+export class Users {
   private props: IUserProps;
-  // private _role: Role = 'Customer';
-  // private _account: AccountUser;
 
   constructor(props: Replace<IUserProps, { createdAt?: Date }>) {
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
     };
-    // this.getAccount();
   }
 
-  get id(): string {
+  getId(): string {
     return this.props.id;
   }
 
-  get fullname(): string {
+  getFullname(): string {
     return this.props.fullname;
   }
 
-  // set account(account: AccountUser) {
-  //   this.props.account = account;
-  // }
+  getAccount(): Account {
+    return this.props.account;
+  }
 
-  // get roles(): Role {
-  //   return this._role;
-  // }
+  getRole(): string {
+    return this.props.role;
+  }
 
-  get cpf() {
+  getCpf() {
     return this.props.cpf;
   }
 
-  get cnpj() {
+  getCnpj() {
     return this.props.cnpj;
   }
-  get email(): string {
+  getEmail(): string {
     return this.props.email;
   }
 
-  get password(): string {
+  getPassword(): string {
     return this.props.password;
   }
 
-  get createdAt(): Date {
+  getCreatedAt(): Date {
     return this.props.createdAt;
   }
 }
@@ -66,14 +62,12 @@ export class User {
 // const data = {
 //   id: '1234',
 //   fullname: 'Marina De Alencar',
-
+//   account: new Account(),
 //   cpf: '789654',
 //   role: 'Customer',
 //   email: 'marina@gmail.com',
 //   password: '123',
 // };
 
-// const user = new User(data);
-// const userAccount = new AccountUser();
+// const user = new Users(data);
 // console.log(user);
-// console.log(userAccount);
