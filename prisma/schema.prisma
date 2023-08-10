@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
 }
 
 datasource db {
@@ -11,15 +12,18 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  firstname String
-  lastname  String
-  cpf       String?  @unique
-  cnpj      String?  @unique
-  username  String   @unique
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
+  id            String   @id @default(uuid())
+  fullname      String
+  role          String
+  cpf           String?  @unique
+  cnpj          String?  @unique
+  email         String   @unique
+  password      String
+  wallet        Float
+  accountNumber Int      @unique
+  accountDigit  Int
+  createdAt     DateTime @default(now())
 
-  @@map("user")
+  @@index([id])
+  @@map("users")
 }

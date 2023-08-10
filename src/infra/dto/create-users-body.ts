@@ -1,29 +1,28 @@
 import {
   IsEmail,
   IsNotEmpty,
+  IsNumber,
   IsString,
-  IsUUID,
   Length,
   Max,
 } from 'class-validator';
 
-export class CreateUserDto {
-  @IsUUID()
-  @IsNotEmpty({ message: 'This id field cannot be empty' })
-  readonly id: string;
-
+export class CreateUserBody {
   @IsString()
   @IsNotEmpty({ message: 'This fullname field cannot be empty' })
   @Length(4, 20)
   readonly fullname: string;
 
   @IsString()
-  @IsNotEmpty({ message: 'This cpf field cannot be empty' })
+  @IsNotEmpty({ message: 'This role field cannot be empty' })
+  @Length(4, 20)
+  readonly role: string;
+
+  @IsString()
   @Max(12)
   readonly cpf: string;
 
   @IsString()
-  @IsNotEmpty({ message: 'This cnpj field cannot be empty' })
   @Max(14)
   readonly cnpj: string;
 
@@ -37,4 +36,13 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'This password field cannot be empty' })
   @Length(4, 50)
   readonly password: string;
+
+  // @IsNumber()
+  // wallet: number;
+
+  // @IsNumber()
+  // accountNumber: number;
+
+  // @IsNumber()
+  // accountDigit: number;
 }
