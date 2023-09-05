@@ -1,61 +1,72 @@
 import { Replace } from '@helpers/Repleace';
-import { Account } from './user_account';
 
 export interface IUserProps {
   id?: string;
   fullname: string;
   role: string;
-  account: Account;
   cpf?: string;
   cnpj?: string;
   email: string;
   password: string;
+  wallet?: number;
+  accountNumber?: number;
+  accountDigit?: number;
   createdAt: Date;
 }
 
 export class Users {
-  private props: IUserProps;
+  private user: IUserProps;
 
   constructor(props: Replace<IUserProps, { createdAt?: Date }>) {
-    this.props = {
+    this.user = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
     };
   }
 
   getId(): string {
-    return this.props.id;
+    return this.user.id;
   }
 
   getFullname(): string {
-    return this.props.fullname;
-  }
-
-  getAccount(): Account {
-    return this.props.account;
+    return this.user.fullname;
   }
 
   getRole(): string {
-    return this.props.role;
+    return this.user.role;
   }
 
   getCpf() {
-    return this.props.cpf;
+    return this.user.cpf;
   }
 
   getCnpj() {
-    return this.props.cnpj;
+    return this.user.cnpj;
   }
   getEmail(): string {
-    return this.props.email;
+    return this.user.email;
   }
 
   getPassword(): string {
-    return this.props.password;
+    return this.user.password;
   }
 
   getCreatedAt(): Date {
-    return this.props.createdAt;
+    return this.user.createdAt;
+  }
+
+  accountWallet(): number {
+    const wallet = 0;
+
+    return wallet;
+  }
+
+  accountNumber(): number {
+    return Math.floor(Math.random() * 999999);
+  }
+
+  accountDigit(): number {
+    return Math.floor(Math.random() * 99);
   }
 }
 

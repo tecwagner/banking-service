@@ -7,7 +7,13 @@ export class InMemoryUsersRepository implements UsersRepository {
   public users: Users[] = [];
 
   async create(user: Users) {
-    console.log('users', user);
+    // console.log('users:', user);
     this.users.push(user);
+  }
+
+  async listAll(): Promise<Users[]> {
+    const users = await this.users;
+    // console.log('memory', users);
+    return users;
   }
 }
