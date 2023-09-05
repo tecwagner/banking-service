@@ -1,5 +1,7 @@
 import { Users } from '../entity/user';
 
 export abstract class UsersRepository {
-  abstract create(users: Users): Promise<void>;
+  abstract create(entity: Users): Promise<void>;
+  abstract listAll(): Promise<Users[]>;
+  // abstract findOne(entity: Users): Promise<Users>;
 }

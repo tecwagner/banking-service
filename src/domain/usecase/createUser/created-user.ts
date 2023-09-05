@@ -1,18 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Users } from '../../entity/user';
-import { Account } from '../../entity/user_account';
 import { UsersRepository } from '../../repositories/users-repository';
-
-interface IAccountUser {
-  wallet: number;
-  accountNumber: number;
-  accountDigit: number;
-}
 
 interface ICreatedUserRequest {
   fullname: string;
   role: string;
-  account: IAccountUser;
   cpf: string;
   cnpj: string;
   email: string;
@@ -32,14 +24,18 @@ export class CreatedUser {
     const user = new Users({
       fullname,
       role,
-      account: new Account(),
       cpf,
       cnpj,
       email,
       password,
     });
 
-    console.log('useCase', user);
+    const userData = {
+      ...user,
+      wallet: user.accountWallet(),
+      accountNumber: user.accountNumber(),
+      accountDigit: user.accountDigit(),
+    };
     await this.usersRepositoriy.create(user);
 
     return { user };

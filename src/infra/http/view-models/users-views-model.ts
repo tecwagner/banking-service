@@ -9,9 +9,6 @@ export class UserViewModel {
       cnpj: users.getCnpj(),
       email: users.getEmail(),
       password: users.getPassword(),
-      wallet: users.getAccount().wallet,
-      accountNumber: users.getAccount().accountNumber,
-      accountDigit: users.getAccount().accountDigit,
     };
   }
 }
