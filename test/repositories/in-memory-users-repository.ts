@@ -11,7 +11,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     this.users.push(user);
   }
 
-  async listAll(): Promise<Users[]> {
+  async findAll(): Promise<Users[]> {
     const users = await this.users;
     // console.log('memory', users);
     return users;

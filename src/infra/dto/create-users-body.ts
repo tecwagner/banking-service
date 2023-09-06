@@ -1,11 +1,4 @@
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  Length,
-  Max,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, Length, Max } from 'class-validator';
 
 export class CreateUserBody {
   @IsString()
@@ -36,13 +29,4 @@ export class CreateUserBody {
   @IsNotEmpty({ message: 'This password field cannot be empty' })
   @Length(4, 50)
   readonly password: string;
-
-  // @IsNumber()
-  // wallet: number;
-
-  // @IsNumber()
-  // accountNumber: number;
-
-  // @IsNumber()
-  // accountDigit: number;
 }
