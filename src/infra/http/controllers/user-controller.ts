@@ -5,12 +5,14 @@ import { UserViewModel } from '../view-models/users-views-model';
 import { ListAllUsers } from '@domain/usecase/listAllUser/listAll-user';
 import { Users } from '@domain/entity/user';
 import { PaginationDto } from '@infra/dto/pagination.dto';
+import { PaginationService } from 'src/common/pagination/paginationService';
 
 @Controller('users')
 export class UserController {
   constructor(
     private createdUser: CreatedUser,
     private listAllUsers: ListAllUsers,
+    private readonly paginationService: PaginationService<Users>,
   ) {}
 
   @Post()
@@ -36,7 +38,6 @@ export class UserController {
     currentPage: number;
     totalPage: number;
     count: number;
-    users: Users[];
   }> {
     const { page, limit } = paginationDto;
 
@@ -47,25 +48,22 @@ export class UserController {
       );
     }
 
-    const allUsers = await this.listAllUsers.execute();
+    const findUsers = await this.listAllUsers.execute();
 
-    // Cálculo do índice inicial e final para a paginação
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
+    // // Cálculo do índice inicial e final para a paginação
+    // const startIndex = (page - 1) * limit;
+    // const endIndex = startIndex + limit;
 
-    // Selecionar os usuários da página atual
-    const users = allUsers.slice(startIndex, endIndex);
+    // // Selecionar os usuários da página atual
+    // const users = allUsers.slice(startIndex, endIndex);
 
-    const count = allUsers.length;
+    // const count = allUsers.length;
 
-    // Calcular o total de páginas arredondando para cima
-    const totalPage = Math.ceil(count / limit);
+    // // Calcular o total de páginas arredondando para cima
+    // const totalPage = Math.ceil(count / limit);
 
-    return {
-      users,
-      currentPage: page,
-      count,
-      totalPage: totalPage < 1 ? 1 : totalPage,
-    };
+    const result = this.paginationService.paginate(findUsers, page, limit);
+
+    return result;
   }
 }
