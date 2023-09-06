@@ -32,7 +32,7 @@ describe('Test Create User in memory repository', () => {
 
     await listAll.execute();
 
-    const users = await usersMemoryRepository.listAll();
+    const users = await usersMemoryRepository.findAll();
 
     expect(users).toHaveLength(2);
   });

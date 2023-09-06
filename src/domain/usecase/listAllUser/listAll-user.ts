@@ -7,7 +7,7 @@ export class ListAllUsers {
   constructor(private usersRepository: UsersRepository) {}
 
   async execute(): Promise<Users[]> {
-    const users = await this.usersRepository.listAll();
+    const users = await this.usersRepository.findAll();
     if (!users) {
       throw new Error('Lista de usuários vazia!');
     }
