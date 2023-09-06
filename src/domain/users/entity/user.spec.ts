@@ -14,7 +14,6 @@ const user = new Users({
 
 describe('Usser test unit', () => {
   it('should be able to create a user', () => {
-    console.log('Creating a user', user);
     expect(user).toBeTruthy();
   });
 

@@ -1,5 +1,5 @@
-import { Users } from '@domain/entity/user';
-import { UsersRepository } from '@domain/repositories/users-repository';
+import { Users } from '@domain/users/entity/user';
+import { UsersRepository } from '@domain/users/respository/users-repository';
 
 //Criando um repository feak
 export class InMemoryUsersRepository implements UsersRepository {

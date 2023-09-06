@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Users } from '../../entity/user';
-import { UsersRepository } from '../../repositories/users-repository';
+import { Users } from '../../../domain/users/entity/user';
+import { UsersRepository } from '../../../domain/users/respository/users-repository';
 
 @Injectable()
-export class ListAllUsers {
+export class FindAllUsers {
   constructor(private usersRepository: UsersRepository) {}
 
   async execute(): Promise<Users[]> {

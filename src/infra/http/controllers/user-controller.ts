@@ -1,9 +1,9 @@
-import { CreatedUser } from '@domain/usecase/createUser/created-user';
+import { CreatedUser } from '@usecase/user/createUser/created-user';
 import { CreateUserBody } from '@infra/dto/create-users-body';
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { UserViewModel } from '../view-models/users-views-model';
-import { ListAllUsers } from '@domain/usecase/listAllUser/listAll-user';
-import { Users } from '@domain/entity/user';
+import { FindAllUsers } from 'src/usecase/user/findAllUser/findAll.user';
+import { Users } from '@domain/users/entity/user';
 import { PaginationDto } from '@infra/dto/pagination.dto';
 import { PaginationService } from 'src/common/pagination/paginationService';
 
@@ -11,7 +11,7 @@ import { PaginationService } from 'src/common/pagination/paginationService';
 export class UserController {
   constructor(
     private createdUser: CreatedUser,
-    private listAllUsers: ListAllUsers,
+    private findAllUsers: FindAllUsers,
     private readonly paginationService: PaginationService<Users>,
   ) {}
 
@@ -41,26 +41,13 @@ export class UserController {
   }> {
     const { page, limit } = paginationDto;
 
-    // Validação dos parâmetros
     if (page <= 0 || limit <= 0) {
       throw new Error(
         'Valores de "page" e "limit" devem ser maiores que zero.',
       );
     }
 
-    const findUsers = await this.listAllUsers.execute();
-
-    // // Cálculo do índice inicial e final para a paginação
-    // const startIndex = (page - 1) * limit;
-    // const endIndex = startIndex + limit;
-
-    // // Selecionar os usuários da página atual
-    // const users = allUsers.slice(startIndex, endIndex);
-
-    // const count = allUsers.length;
-
-    // // Calcular o total de páginas arredondando para cima
-    // const totalPage = Math.ceil(count / limit);
+    const findUsers = await this.findAllUsers.execute();
 
     const result = this.paginationService.paginate(findUsers, page, limit);
 
