@@ -1,4 +1,4 @@
-import { IUserProps, Users } from '../../src/domain/entity/user';
+import { IUserProps, Users } from '../../src/domain/users/entity/user';
 
 type Override = Partial<IUserProps>;
 

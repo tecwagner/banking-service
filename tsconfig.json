@@ -24,6 +24,9 @@
       "@domain/*": [
         "./src/domain/*"
       ],
+      "@usecase/*": [
+        "./src/usecase/*"
+      ],
       "@helpers/*": [
         "./src/helpers/*"
       ],

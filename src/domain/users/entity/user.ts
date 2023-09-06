@@ -36,11 +36,11 @@ export class Users {
     return this.user.role;
   }
 
-  getCpf() {
+  getCpf(): string {
     return this.user.cpf;
   }
 
-  getCnpj() {
+  getCnpj(): string {
     return this.user.cnpj;
   }
   getEmail(): string {
@@ -68,17 +68,10 @@ export class Users {
   accountDigit(): number {
     return Math.floor(Math.random() * 99);
   }
+
+  // validate() {
+  //   if (this.user.cpf === this.user.cpf) {
+  //     throw new Error('existing document');
+  //   }
+  // }
 }
-
-// const data = {
-//   id: '1234',
-//   fullname: 'Marina De Alencar',
-//   account: new Account(),
-//   cpf: '789654',
-//   role: 'Customer',
-//   email: 'marina@gmail.com',
-//   password: '123',
-// };
-
-// const user = new Users(data);
-// console.log(user);
